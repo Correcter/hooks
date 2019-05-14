@@ -1,0 +1,11 @@
+{
+    "name": "icontext/hooks",
+    "license": "proprietary",
+    "type": "project",
+    "repositories": [
+        { "type": "vcs", "url": "git@bitbucket.org:icontext/istat.git" }
+    ],
+    "require": {
+        "czproject/git-php": "^3.14"
+    }
+}

@@ -1,0 +1,9 @@
+.php_cs
+.php_cs.cache
+.php_cs.dist
+access.log
+error.log
+phpunit.xml.dist
+composer.lock
+.idea
+vendor
