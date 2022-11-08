@@ -1,34 +1,34 @@
 Hooks
 =====
 
-Проект создан с целью упрощения синхронизации веток различных репозиториев между **gitlab** и **bitbucket**, по средствам Webhooks.
+The project was created to simplify the synchronization of branches of various repositories between **gitlab** and **bitbucket**, using Webhooks.
 
-##### Принцип взаимодействия
+##### The principle of interaction
 
-Gitlab и Bitbucket нстроены таким образом, чтобы отправлять запросы (JSON) на сервер синхронизации:
+Gitlab and Bitbucket are configured to send requests (JSON) to the synchronization server:
 
 **http://hooks.dev6.icontextdev.ru**
 
 ```
-Примечания: за один запрос происходит проверка всех веток репозитория, во избежании рассинхронизации
+Notes: in one request, all branches of the repository are checked, in order to avoid desynchronization
 ```
 
-### Синхронизация репозитория:
+### Repository synchronization:
 
-- поиск репозитория;
-- чтение локальных веток каждого хранилища: **Gitlab**, **BitBucket**;
-- стягивание изменений каждой ветки и запись в сводный репозиторий;
-- определение из какого хранилища пришел запрос на синхронизацию;
-- в зависимости от хранилища, производится запись в противоположный:
-   - из **Gitlab** в **BitBucket**
-   - из **BitBucket** в **Gitlab**
+- repository search;
+- reading local branches of each repository: **Gitlab**, **BitBucket**;
+- pulling together the changes of each branch and writing to the consolidated repository;
+- determination of which storage the synchronization request came from;
+- depending on the storage, writes are made to the opposite:
+- from **Gitlab** to **BitBucket**
+   - from **BitBucket** to **Gitlab**
 
 
-### Настройка
+### Setup
 
-- Каждый репозиторий необходимо настраивать индивидуально, из папки **../hooks/repos/**;
+- Each repository must be configured individually, from the folder **../hooks/repos/**;
     
-    Например:
+    For example:
     
     ```
        git remote add bitbucket git@bitbucket.org:icontext/istat.git
@@ -37,27 +37,27 @@ Gitlab и Bitbucket нстроены таким образом, чтобы от�
        git remote add gitlab git@gitlab.icontextdev.ru:cabinet/cabinet.git
     ```
     
-    Зависимости для рабты проекта:
+    Dependencies for the project work:
     * git
     * php 7.2
     * nginx
     * composer
         
-**Возможность использования синхронизации из командной строки:**
+**Ability to use synchronization from the command line:**
 
 ```
 ./sync.sh "repo_name" "host"
 ```
 
-**repo_name** - каталок репозитория
+**repo_name** - repository name
 
-**host** - **bitbucket.org** или **gitlab.icontextdev.ru**
+**host** - **bitbucket.org ** or **gitlab.icontextdev.ru**
 
-#### Установка и настройка
+#### Installation and Configuration
 
-**Важно! Необходимо указать путь к папке, где будут храниться репозитории**
+** Important! You must specify the path to the folder where the repositories will be stored**
 
-- запустить инсталятор с параметром:
+- run the installer with the parameter:
 
 ```
 ./install.sh /var/www/hooks/var/repos/
